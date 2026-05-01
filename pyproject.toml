@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml-markowitz"
+version = "0.1.0"
+requires-python = ">=3.9"
+description = "Equity forecasting and portfolio optimisation toolkit."
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0,<3",
+    "loguru>=0.7",
+    "scikit-learn>=1.3",
+    "scipy>=1.10",
+    "statsmodels>=0.14",
+    "pmdarima>=2.0",
+    "lightgbm>=4.0",
+    "flaml[automl]>=2.0",
+    "cvxopt>=1.3",
+    "plotly>=5.0",
+    "yfinance>=0.2",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+notebooks = [
+    "ipython>=8.0",
+    "ipykernel>=6.0",
+    "jupyterlab>=4.0",
+    "nbformat>=4.2.0",
+]
+dev = [
+    "ruff>=0.6",
+    "pytest>=8.0",
+    "pre-commit>=3.0",
+]
+
+# Packaging
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Ruff
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+extend-include = ["*.ipynb"]
+extend-exclude = ["output", "*.egg-info"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+# Pytest
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"
