@@ -29,6 +29,7 @@ htmlcov/
 
 # Generated output — large files, not version-controlled
 output/
+.csv
 
 # OS
 .DS_Store
