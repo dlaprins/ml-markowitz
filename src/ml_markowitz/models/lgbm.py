@@ -1,3 +1,5 @@
+# TODO: add feature selection for feature drift & model stability
+
 import pandas as pd
 from flaml import AutoML
 from lightgbm import LGBMRegressor
@@ -234,7 +236,7 @@ def lgbm_pipeline(
 
     # Predict on the out-of-time test set
     x_test = test_data[feature_cols]
-    y_test = pd.Series(
+    y_lgbm_test = pd.Series(
         model.predict(x_test),
         index=pd.MultiIndex.from_arrays(
             [x_test["stock"], x_test.index],
@@ -251,4 +253,4 @@ def lgbm_pipeline(
         name="mu_lgbm_forecast",
     )
 
-    return y_test, mu_forecast, hyperparams
+    return y_lgbm_test, mu_forecast, hyperparams
